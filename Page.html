@@ -2,78 +2,140 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="Page.css">
     <script src="Piano.js"></script>
     <title>Page</title>
   </head>
   <body>
-    
+    <h1>Activité musicale: cycle des quintes et tonalité relative</h1>
+
     <table>
         <tr>
             <th>Tonalité</th>
-            <td>7 ♭<br><img src="Images/1024px-C-flat-major_a-flat-minor.png" alt="1024px-C-flat-major_a-flat-minor" height="100px" width="100px"></td>
+            <td>7 ♭<br><img src="Images/1024px-C-flat-major_a-flat-minor.png" alt="do♭ majeur/la♭ mineur" height="100px" width="100px"></td>
+            <td>6 ♭<br><img src="Images/1024px-G-flat-major_e-flat-minor.png" alt="sol♭ majeur/mi♭ mineur" height="100px" width="100px"></td>
+            <td>5 ♭<br><img src="Images/1024px-D-flat-major_b-flat-minor.png" alt="ré♭ majeur/si♭ mineur" height="100px" width="100px"></td>
+            <td>4 ♭<br><img src="Images/1024px-A-flat-major_f-minor.png" alt="la♭ majeur/fa mineur" height="100px" width="100px"></td>
+            <td>3 ♭<br><img src="Images/1024px-E-flat-major_c-minor.png" alt="mi♭ majeur/do mineur" height="100px" width="100px"></td>
+            <td>2 ♭<br><img src="Images/1024px-B-flat-major_g-minor.png" alt="si♭ majeur/sol mineur" height="100px" width="100px"></td>
+            <td>1 ♭<br><img src="Images/1024px-F-major_d-minor.png" alt="fa majeur/ré mineur" height="100px" width="100px"></td>
+            <td>0<br><img src="Images/1024px-C-major_a-minor.png" alt="do majeur/la mineur" height="100px" width="100px"></td>
+            <td>1 ♯<br><img src="Images/1024px-G-major_e-minor.png" alt="sol majeur/mi mineur" height="100px" width="100px"></td>
+            <td>2 ♯<br><img src="Images/1024px-D-major_b-minor.png" alt="ré majeur/si mineur" height="100px" width="100px"></td>
+            <td>3 ♯<br><img src="Images/1024px-A-major_f-sharp-minor.png" alt="la majeur/fa♯ mineur" height="100px" width="100px"></td>
+            <td>4 ♯<br><img src="Images/1024px-E-major_c-sharp-minor.png" alt="mi majeur/do♯ mineur" height="100px" width="100px"></td>
+            <td>5 ♯<br><img src="Images/1024px-B-major_g-sharp-minor.png" alt="si majeur/sol♯ mineur" height="100px" width="100px"></td>
+            <td>6 ♯<br><img src="Images/1024px-F-sharp-major_d-sharp-minor.png" alt="fa♯ majeur/ré♯ mineur" height="100px" width="100px"></td>
+            <td>7 ♯<br><img src="Images/1024px-C-sharp-major_a-sharp-minor.png" alt="do♯ majeur/la♯ mineur" height="100px" width="100px"></td>
         </tr>
         <tr>
             <th>Mode majeur</th>
-            <td>do ♭ majeur</td>
+            <td>do♭ majeur</td>
+            <td>sol♭ majeur</td>
+            <td>ré♭ majeur</td>
+            <td>la♭ majeur</td>
+            <td>mi♭ majeur</td>
+            <td>si♭ majeur</td>
+            <td>fa majeur</td>
+            <td>do majeur</td>
+            <td>sol majeur</td>
+            <td>ré majeur</td>
+            <td>la majeur</td>
+            <td>mi majeur</td>
+            <td>si majeur</td>
+            <td>fa♯ majeur</td>
+            <td>do♯ majeur</td>
         </tr>
         <tr>
             <th>Mode mineur</th>
-            <td>la ♭ mineur</td>
+            <td>la♭ mineur</td>
+            <td>mi♭ mineur</td>
+            <td>si♭ mineur</td>
+            <td>fa mineur</td>
+            <td>do mineur</td>
+            <td>sol mineur</td>
+            <td>ré mineur</td>
+            <td>la mineur</td>
+            <td>mi mineur</td>
+            <td>si mineur</td>
+            <td>fa♯ mineur</td>
+            <td>do♯ mineur</td>
+            <td>sol♯ mineur</td>
+            <td>ré♯ mineur</td>
+            <td>la♯ mineur</td>
         </tr>
     </table>
 
     <br>
     <br>
+    <br>
+    <br>
 
     <form action="/action_page.php">
-        <label for="nb_alt">Selectionnez le nombre d'alterations:</label>
+        <label for="nb_alt">Sélectionnez le nombre d'altérations: </label>
+        <input type="number" id="nb_alt" name="nb_alt" min="0" max="7">
+        <input type="submit" value="Soumettre">
+    </form>
+
+    <br>
+    <br>
+
+    <form action="/action_page.php">
+        <label for="scale_wanted">Gamme recherchée: </label>
+        <select id="scale_wanted" name="scale_wanted">
+            <option value="do">Do</option>
+            <option value="ré">Ré</option>
+            <option value="mi">Mi</option>
+            <option value="fa">Fa</option>
+            <option value="sol">Sol</option>
+            <option value="la">La</option>
+            <option value="si">Si</option>
+        </select>
         <br>
-        <label for="nb_alt_0">0</label><input type="radio" id="nb_alt_0" name="nb_alt_0">
-        <label for="nb_alt_1">1</label><input type="radio" id="nb_alt_1" name="nb_alt_1">
-        <label for="nb_alt_2">2</label><input type="radio" id="nb_alt_2" name="nb_alt_2">
-        <label for="nb_alt_3">3</label><input type="radio" id="nb_alt_3" name="nb_alt_3">
-        <label for="nb_alt_4">4</label><input type="radio" id="nb_alt_4" name="nb_alt_4">
-        <label for="nb_alt_5">5</label><input type="radio" id="nb_alt_5" name="nb_alt_5">
-        <label for="nb_alt_6">6</label><input type="radio" id="nb_alt_6" name="nb_alt_6">
-        <label for="nb_alt_7">7</label><input type="radio" id="nb_alt_7" name="nb_alt_7">
+        <label for="alteration_wanted">Altération: </label>
+        <select>
+            <option value="♭">♭</option>
+            <option value="♯">♯</option>
+            <option value="none">Aucune</option>
+        </select>
+        <br>
+        <label for="interval_wanted">Intervalle: </label>
+        <select>
+            <option value="major">Majeur</option>
+            <option value="minor">Mineur</option>
+        </select>
         <br>
         <input type="submit" value="Soumettre">
     </form>
 
     <br>
-
-    <form action="/action_page.php">
-        <label for="scale_wanted">Gamme recherchée:</label><br>
-        <input type="text" id="scale_wanted" name="scale_wanted" placeholder="Entrez une note de musique"><br>
-        <input type="submit" value="Soumettre">
-    </form>
-
     <br>
 
     <form action="/action_page.php">
-        <label for="select_ht">Demi-tons a l'interieur de la gamme:</label><br>
+        <label for="select_ht">Demi-tons a l'intérieur de la gamme: </label><br>
         <input type="checkbox" id="select_ht_0" name="select_ht_0" ><label for="select_ht_0">do</label><br>
-        <input type="checkbox" id="select_ht_1" name="select_ht_1"><label for="select_ht_1">do ♯/re ♭</label><br>
-        <input type="checkbox" id="select_ht_2" name="select_ht_2"><label for="select_ht_2">re</label><br>
-        <input type="checkbox" id="select_ht_3" name="select_ht_3"><label for="select_ht_3">re ♯/mi ♭</label><br>
+        <input type="checkbox" id="select_ht_1" name="select_ht_1"><label for="select_ht_1">do♯/ré♭</label><br>
+        <input type="checkbox" id="select_ht_2" name="select_ht_2"><label for="select_ht_2">ré</label><br>
+        <input type="checkbox" id="select_ht_3" name="select_ht_3"><label for="select_ht_3">ré♯/mi♭</label><br>
         <input type="checkbox" id="select_ht_4" name="select_ht_4"><label for="select_ht_4">mi</label><br>
         <input type="checkbox" id="select_ht_5" name="select_ht_5"><label for="select_ht_5">fa</label><br>
-        <input type="checkbox" id="select_ht_6" name="select_ht_6"><label for="select_ht_6">fa ♯/sol ♭</label><br>
+        <input type="checkbox" id="select_ht_6" name="select_ht_6"><label for="select_ht_6">fa♯/sol♭</label><br>
         <input type="checkbox" id="select_ht_7" name="select_ht_7"><label for="select_ht_7">sol</label><br>
-        <input type="checkbox" id="select_ht_8" name="select_ht_8"><label for="select_ht_8">sol ♯/la ♭</label><br>
+        <input type="checkbox" id="select_ht_8" name="select_ht_8"><label for="select_ht_8">sol♯/la♭</label><br>
         <input type="checkbox" id="select_ht_9" name="select_ht_9"><label for="select_ht_9">la</label><br>
-        <input type="checkbox" id="select_ht_10" name="select_ht_10"><label for="select_ht_10">la ♯/si ♭</label><br>
+        <input type="checkbox" id="select_ht_10" name="select_ht_10"><label for="select_ht_10">la♯/si♭</label><br>
         <input type="checkbox" id="select_ht_11" name="select_ht_11"><label for="select_ht_11">si</label><br>
         <input type="submit" value="Soumettre"><br>
     </form>
 
+    <br>
     <br>
 
     <div id="pianoContainer">
 
     </div>
 
-    <br><br>
-
+    <br>
+    <br>
   </body>
 </html>
