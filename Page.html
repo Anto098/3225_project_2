@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Page.css">
     <script src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Page</title>
   </head>
   <body>
@@ -66,134 +67,145 @@
         </tr>
     </table>
             
-    <br><br><br><br><br><br>
-
-    <div class="container-fluid">
+    <br>
+    <h2>Veuillez choisir un jeu :</h2>
+    <h2>vous avez un temps imparti etc...</h2>
+    <div class="container w-50 bg-light hidden" id="navbar">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="game col-6">
-                <h2>Jeu 1: Spécifier les type et nombre d'une tonalité</h2>
-                <p><i>Exemple de question: Quelles sont les altérations de la gamme de fa mineur et combien y en a-t-il?</i></p>
-                <p><i>Réponse: Les altérations sont des bémols et il y en a 4.</i></p>
-                <label for="type_alt"><b>Sélectionnez le type d'altérations: </b></label>
-                <select id="type_alt" name="type_alt">
-                    <option value="♭">♭</option>
-                    <option value="♯">♯</option>
-                    <option value="none">Aucune</option>
-                </select>
-                <br>
-                <label for="nb_alt"><b>Sélectionnez le nombre d'altérations: </b></label>
-                <input type="number" id="nb_alt" name="nb_alt" min="0" max="7">
-                <br>
-                <input type="submit" value="Soumettre">
-            </div>
-            <div class="col-3"></div>
+            <div class="col"><button type="button" id="button_game1" name="game" class="btn btn-primary button_size">Jeu 1</button></div>
+            <div class="col"><button type="button" id="button_game2" name="game" class="btn btn-primary button_size">Jeu 2</button></div>
+            <div class="col"><button type="button" id="button_game3" name="game" class="btn btn-primary button_size">Jeu 3</button></div>
+            <div class="col"><button type="button" id="button_game4" name="game" class="btn btn-primary button_size">Jeu 4</button></div>
+            <div class="col">Timer <b id="timer">10</b></div>
+            <div class="col">Score <b id="score">0</b></div>
         </div>
     </div>
 
-    <br><br><br><br><br><br>
+    <br>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="game col-6">
-                <h2>Jeu 2: Spécifier quelle tonalité possède un nombre donné d'altérations</h2>
-                <p><i>Exemple de question: Quelle est la tonalité majeure qui contient 3 dièses?</i></p>
-                <p><i>Réponse: La.</i></p>
-                <label for="scale_wanted"><b>Sélectionnez la gamme recherchée: </b></label>
-                <select id="scale_wanted" name="scale_wanted">
-                    <option value="do">Do</option>
-                    <option value="ré">Ré</option>
-                    <option value="mi">Mi</option>
-                    <option value="fa">Fa</option>
-                    <option value="sol">Sol</option>
-                    <option value="la">La</option>
-                    <option value="si">Si</option>
-                </select>
-                <br>
-                <label for="alteration_wanted"><b>Sélectionnez le type d'altérations: </b></label>
-                <select id="alteration_wanted" name="alteration_wanted">
-                    <option value="♭">♭</option>
-                    <option value="♯">♯</option>
-                    <option value="none">Aucune</option>
-                </select>
-                <br>
-                <input type="submit" value="Soumettre">
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </div>
-
-    <br><br><br><br><br><br>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="game col-8">
-                <h2>Jeu 3: Spécifier les notes dans une tonalité donnée</h2>
-                <p><i>Exemple de question: Quelle sont les notes/demi-tons de la gamme de do majeur?</i></p>
-                <p><i>Réponse: Do - ré - mi - fa - sol - la - si</i></p>
-                <p><i>Intervalles de séparation d'une gamme majeure: 1 ton - 1 ton - 1/2 ton - 1 ton - 1 ton - 1 ton - 1/2 ton</i></p>
-                <p><i>Intervalles de séparation d'une gamme mineure: 1 ton - 1/2 ton - 1 ton - 1 ton - 1/2 ton - 1 ton - 1 ton</i></p>
-                <b>Sélectionnez les demi-tons a l'intérieur de la gamme: </b><br>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-2"><input type="checkbox" id="select_ht_0" name="select_ht_0"><br><label for="select_ht_0">do</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_1" name="select_ht_1"><br><label for="select_ht_1">do♯/ré♭</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_2" name="select_ht_2"><br><label for="select_ht_2">ré</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_3" name="select_ht_3"><br><label for="select_ht_3">ré♯/mi♭</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_4" name="select_ht_4"><br><label for="select_ht_4">mi</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_5" name="select_ht_5"><br><label for="select_ht_5">fa</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2"><input type="checkbox" id="select_ht_6" name="select_ht_6"><br><label for="select_ht_6">fa♯/sol♭</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_7" name="select_ht_7"><br><label for="select_ht_7">sol</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_8" name="select_ht_8"><br><label for="select_ht_8">sol♯/la♭</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_9" name="select_ht_9"><br><label for="select_ht_9">la</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_10" name="select_ht_10"><br><label for="select_ht_10">la♯/si♭</label></div>
-                        <div class="col-2"><input type="checkbox" id="select_ht_11" name="select_ht_11"><br><label for="select_ht_11">si</label></div>
-                    </div>
+    <div class="container" id="game_container">
+        <div class="container-fluid hidden" id="game1">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="game col-6">
+                    <h2>Jeu 1: Spécifier les type et nombre d'une tonalité</h2>
+                    <p><i id="question_1">Exemple de question: Quelles sont les altérations de la gamme de fa mineur et combien y en a-t-il?</i></p>
+                    <p><i>Réponse: Les altérations sont des bémols et il y en a 4.</i></p>
+                    <label for="type_alt"><b>Sélectionnez le type d'altérations: </b></label>
+                    <select id="type_alt" name="type_alt">
+                        <option value="♭">♭</option>
+                        <option value="♯">♯</option>
+                        <option value="none">Aucune</option>
+                    </select>
+                    <br>
+                    <label for="nb_alt"><b>Sélectionnez le nombre d'altérations: </b></label>
+                    <input type="number" id="nb_alt" name="nb_alt" min="0" max="7">
+                    <br>
+                    <input type="submit" value="Soumettre" id="submission1">
                 </div>
-                
-                <input type="submit" value="Soumettre"><br>
+                <div class="col-3"></div>
             </div>
-            <div class="col-2"></div>
         </div>
-    </div>
 
-    <br><br><br><br><br><br>
+        <div class="container-fluid hidden" id="game2">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="game col-6">
+                    <h2>Jeu 2: Spécifier quelle tonalité possède un nombre donné d'altérations</h2>
+                    <p><i id="question_2">Exemple de question: Quelle est la tonalité majeure qui contient 3 dièses?</i></p>
+                    <p><i>Réponse: La.</i></p>
+                    <label for="scale_wanted"><b>Sélectionnez la gamme recherchée: </b></label>
+                    <select id="scale_wanted" name="scale_wanted">
+                        <option value="do">Do</option>
+                        <option value="ré">Ré</option>
+                        <option value="mi">Mi</option>
+                        <option value="fa">Fa</option>
+                        <option value="sol">Sol</option>
+                        <option value="la">La</option>
+                        <option value="si">Si</option>
+                    </select>
+                    <br>
+                    <label for="alteration_wanted"><b>Sélectionnez le type d'altérations: </b></label>
+                    <select id="alteration_wanted" name="alteration_wanted">
+                        <option value="♭">♭</option>
+                        <option value="♯">♯</option>
+                        <option value="none">Aucune</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Soumettre">
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2"></div>
+        <div class="container-fluid hidden" id="game3">
+            <div class="row">
+                <div class="col-2"></div>
                 <div class="game col-8">
-                    <h2>Jeu 4: Relativité mineure/majeure</h2>
-                    <p><i>Exemple de question: Quelle est la relative mineure de do majeur?</i></p>
-                    <p><i>Réponse: C'est la mineur.</i></p>
-                    <b>Sélectionnez la relative mineure/majeure de la gamme donnée: </b><br>
+                    <h2>Jeu 3: Spécifier les notes dans une tonalité donnée</h2>
+                    <p id="question_3"><i>Exemple de question: Quelle sont les notes/demi-tons de la gamme de do majeur?</i></p>
+                    <p><i>Réponse: Do - ré - mi - fa - sol - la - si</i></p>
+                    <p><i>Intervalles de séparation d'une gamme majeure: 1 ton - 1 ton - 1/2 ton - 1 ton - 1 ton - 1 ton - 1/2 ton</i></p>
+                    <p><i>Intervalles de séparation d'une gamme mineure: 1 ton - 1/2 ton - 1 ton - 1 ton - 1/2 ton - 1 ton - 1 ton</i></p>
+                    <b>Sélectionnez les demi-tons a l'intérieur de la gamme: </b><br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-2"><button type="button" id="minor_rel_0" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_0">do</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_1" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_1">do♯/ré♭</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_2" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_2">ré</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_3" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_3">ré♯/mi♭</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_4" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_4">mi</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_5" name="minor_rel" class="btn btn-primary"><br><label for="minor_rel_5">fa</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_0" name="select_ht_0"><br><label for="select_ht_0">do</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_1" name="select_ht_1"><br><label for="select_ht_1">do♯/ré♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_2" name="select_ht_2"><br><label for="select_ht_2">ré</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_3" name="select_ht_3"><br><label for="select_ht_3">ré♯/mi♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_4" name="select_ht_4"><br><label for="select_ht_4">mi</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_5" name="select_ht_5"><br><label for="select_ht_5">fa</label></div>
                         </div>
                         <div class="row">
-                            <div class="col-2"><button type="button" id="minor_rel_6" name="minor_rel"><br><label for="minor_rel_6">fa♯/sol♭</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_7" name="minor_rel"><br><label for="minor_rel_7">sol</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_8" name="minor_rel"><br><label for="minor_rel_8">sol♯/la♭</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_9" name="minor_rel"><br><label for="minor_rel_9">la</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_10" name="minor_rel"><br><label for="minor_rel_10">la♯/si♭</label></div>
-                            <div class="col-2"><button type="button" id="minor_rel_11" name="minor_rel"><br><label for="minor_rel_11">si</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_6" name="select_ht_6"><br><label for="select_ht_6">fa♯/sol♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_7" name="select_ht_7"><br><label for="select_ht_7">sol</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_8" name="select_ht_8"><br><label for="select_ht_8">sol♯/la♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_9" name="select_ht_9"><br><label for="select_ht_9">la</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_10" name="select_ht_10"><br><label for="select_ht_10">la♯/si♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_11" name="select_ht_11"><br><label for="select_ht_11">si</label></div>
                         </div>
                     </div>
+
                     <input type="submit" value="Soumettre"><br>
                 </div>
-            <div class="col-2"></div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+
+        <div class="container-fluid hidden" id="game4">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="game col-8">
+                    <h2>Jeu 4: Relativité mineure/majeure</h2>
+                    <p><i  id="question_4">Exemple de question: Quelle est la relative mineure de do majeur?</i></p>
+                    <p><i>Réponse: C'est la mineur.</i></p>
+                    <b>Sélectionnez la relative mineure/majeure de la gamme donnée: </b><br><br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2"><button type="button" id="minor_rel_0" name="minor_rel" class="btn btn-primary button_size">do</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_1" name="minor_rel" class="btn btn-primary button_size">do♯/ré♭</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_2" name="minor_rel" class="btn btn-primary button_size">ré</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_3" name="minor_rel" class="btn btn-primary button_size">ré♯/mi♭</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_4" name="minor_rel" class="btn btn-primary button_size">mi</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_5" name="minor_rel" class="btn btn-primary button_size">fa</button></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2"><button type="button" id="minor_rel_6" name="minor_rel" class="btn btn-primary button_size">fa♯/sol♭</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_7" name="minor_rel" class="btn btn-primary button_size">sol</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_8" name="minor_rel" class="btn btn-primary button_size">sol♯/la♭</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_9" name="minor_rel" class="btn btn-primary button_size">la</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_10" name="minor_rel" class="btn btn-primary button_size">la♯/si♭</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_11" name="minor_rel" class="btn btn-primary button_size">si</button></div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" value="Soumettre" class="btn btn-primary"><br>
+                </div>
+                <div class="col-2"></div>
+            </div>
         </div>
     </div>
-
   </body>
 </html>
