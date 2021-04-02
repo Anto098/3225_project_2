@@ -8,3 +8,5 @@ piano.keyDown("F#4");
 piano.keyDown("A4");
 
 console.log("Allo");
+
+window.addEventListener("load", init);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="Page.css">
-    <script src="Piano.js"></script>
+    <script src="index.js"></script>
     <title>Page</title>
   </head>
   <body>
@@ -12,21 +12,21 @@
     <table>
         <tr>
             <th>Tonalité</th>
-            <td>7 ♭<br><img src="Images/1024px-C-flat-major_a-flat-minor.png" alt="do♭ majeur/la♭ mineur" height="100px" width="100px"></td>
-            <td>6 ♭<br><img src="Images/1024px-G-flat-major_e-flat-minor.png" alt="sol♭ majeur/mi♭ mineur" height="100px" width="100px"></td>
-            <td>5 ♭<br><img src="Images/1024px-D-flat-major_b-flat-minor.png" alt="ré♭ majeur/si♭ mineur" height="100px" width="100px"></td>
-            <td>4 ♭<br><img src="Images/1024px-A-flat-major_f-minor.png" alt="la♭ majeur/fa mineur" height="100px" width="100px"></td>
-            <td>3 ♭<br><img src="Images/1024px-E-flat-major_c-minor.png" alt="mi♭ majeur/do mineur" height="100px" width="100px"></td>
-            <td>2 ♭<br><img src="Images/1024px-B-flat-major_g-minor.png" alt="si♭ majeur/sol mineur" height="100px" width="100px"></td>
-            <td>1 ♭<br><img src="Images/1024px-F-major_d-minor.png" alt="fa majeur/ré mineur" height="100px" width="100px"></td>
-            <td>0<br><img src="Images/1024px-C-major_a-minor.png" alt="do majeur/la mineur" height="100px" width="100px"></td>
-            <td>1 ♯<br><img src="Images/1024px-G-major_e-minor.png" alt="sol majeur/mi mineur" height="100px" width="100px"></td>
-            <td>2 ♯<br><img src="Images/1024px-D-major_b-minor.png" alt="ré majeur/si mineur" height="100px" width="100px"></td>
-            <td>3 ♯<br><img src="Images/1024px-A-major_f-sharp-minor.png" alt="la majeur/fa♯ mineur" height="100px" width="100px"></td>
-            <td>4 ♯<br><img src="Images/1024px-E-major_c-sharp-minor.png" alt="mi majeur/do♯ mineur" height="100px" width="100px"></td>
-            <td>5 ♯<br><img src="Images/1024px-B-major_g-sharp-minor.png" alt="si majeur/sol♯ mineur" height="100px" width="100px"></td>
-            <td>6 ♯<br><img src="Images/1024px-F-sharp-major_d-sharp-minor.png" alt="fa♯ majeur/ré♯ mineur" height="100px" width="100px"></td>
-            <td>7 ♯<br><img src="Images/1024px-C-sharp-major_a-sharp-minor.png" alt="do♯ majeur/la♯ mineur" height="100px" width="100px"></td>
+            <td>7 ♭<br><img src="Images/1024px-C-flat-major_a-flat-minor.png" alt="do♭ majeur/la♭ mineur" height="100" width="100"></td>
+            <td>6 ♭<br><img src="Images/1024px-G-flat-major_e-flat-minor.png" alt="sol♭ majeur/mi♭ mineur" height="100" width="100"></td>
+            <td>5 ♭<br><img src="Images/1024px-D-flat-major_b-flat-minor.png" alt="ré♭ majeur/si♭ mineur" height="100" width="100"></td>
+            <td>4 ♭<br><img src="Images/1024px-A-flat-major_f-minor.png" alt="la♭ majeur/fa mineur" height="100" width="100"></td>
+            <td>3 ♭<br><img src="Images/1024px-E-flat-major_c-minor.png" alt="mi♭ majeur/do mineur" height="100" width="100"></td>
+            <td>2 ♭<br><img src="Images/1024px-B-flat-major_g-minor.png" alt="si♭ majeur/sol mineur" height="100" width="100"></td>
+            <td>1 ♭<br><img src="Images/1024px-F-major_d-minor.png" alt="fa majeur/ré mineur" height="100" width="100"></td>
+            <td>0<br><img src="Images/1024px-C-major_a-minor.png" alt="do majeur/la mineur" height="100" width="100"></td>
+            <td>1 ♯<br><img src="Images/1024px-G-major_e-minor.png" alt="sol majeur/mi mineur" height="100" width="100"></td>
+            <td>2 ♯<br><img src="Images/1024px-D-major_b-minor.png" alt="ré majeur/si mineur" height="100" width="100"></td>
+            <td>3 ♯<br><img src="Images/1024px-A-major_f-sharp-minor.png" alt="la majeur/fa♯ mineur" height="100" width="100"></td>
+            <td>4 ♯<br><img src="Images/1024px-E-major_c-sharp-minor.png" alt="mi majeur/do♯ mineur" height="100" width="100"></td>
+            <td>5 ♯<br><img src="Images/1024px-B-major_g-sharp-minor.png" alt="si majeur/sol♯ mineur" height="100" width="100"></td>
+            <td>6 ♯<br><img src="Images/1024px-F-sharp-major_d-sharp-minor.png" alt="fa♯ majeur/ré♯ mineur" height="100" width="100"></td>
+            <td>7 ♯<br><img src="Images/1024px-C-sharp-major_a-sharp-minor.png" alt="do♯ majeur/la♯ mineur" height="100" width="100"></td>
         </tr>
         <tr>
             <th>Mode majeur</th>
@@ -93,14 +93,14 @@
         </select>
         <br>
         <label for="alteration_wanted">Altération: </label>
-        <select>
+        <select id="alteration_wanted">
             <option value="♭">♭</option>
             <option value="♯">♯</option>
             <option value="none">Aucune</option>
         </select>
         <br>
         <label for="interval_wanted">Intervalle: </label>
-        <select>
+        <select id="interval_wanted">
             <option value="major">Majeur</option>
             <option value="minor">Mineur</option>
         </select>
@@ -112,7 +112,7 @@
     <br>
 
     <form action="/action_page.php">
-        <label for="select_ht">Demi-tons a l'intérieur de la gamme: </label><br>
+        <p>Demi-tons a l'intérieur de la gamme: </p>
         <input type="checkbox" id="select_ht_0" name="select_ht_0" ><label for="select_ht_0">do</label><br>
         <input type="checkbox" id="select_ht_1" name="select_ht_1"><label for="select_ht_1">do♯/ré♭</label><br>
         <input type="checkbox" id="select_ht_2" name="select_ht_2"><label for="select_ht_2">ré</label><br>
