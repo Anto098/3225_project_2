@@ -143,8 +143,6 @@ function generate_question() {
         }
     }
 
-
-
     switch(game_number) {
         case 1:
             return "Quelle sont les altérations de la gamme de "+document.getElementById(scale_type+scale_number)+" et combien y en a-t-il?";   // A remplacer par les vraies questions
