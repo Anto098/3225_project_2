@@ -129,13 +129,15 @@ function verify_answer() {
             console.log(checked)
             break;
         case 4:
+            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary")       // Resets all buttons when an answer is submitted for game number 4
+
             var minor_rel = null;
             for (let i=0;i<12;i++) {
                 if($("#minor_rel_"+i).hasClass("checked")) {
                     minor_rel = i;
                 }
             }
-            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary")       // Resets all buttons when an answer is submitted for game number 4
+
             console.log(minor_rel)
             break;
     }
