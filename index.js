@@ -214,12 +214,11 @@ function verify_answer() {
                     && checked.includes((i+10)%12)) $("#score").html(++current_score);
             }
             break;
-        case 4:
-            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary");      // Resets all buttons when an answer is submitted for game number 4
+        case 4:     // Resets all buttons when an answer is submitted for game number 4
 
             var minor_rel = null;
             for (var i=0;i<12;i++) {
-                if(document.getElementById("minor_rel_"+i).hasClass("checked")) {
+                if(document.getElementById("minor_rel_"+i).className.includes("checked")) {
                     minor_rel = i;
                 }
             }
@@ -234,6 +233,8 @@ function verify_answer() {
                 let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
                 if(note.includes(other_scale+" "+other_scale_alteration)) $("#score").html(++current_score);
             }
+
+            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary"); 
             break;
     }
 
