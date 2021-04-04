@@ -25,6 +25,8 @@ let first_note_id;
 
 function init(){
     $("#navbar").removeClass("hidden");
+    $("#score_history").removeClass("hidden");
+
 
     for (let i=1; i<=4; i++) {
         $("#button_game"+i).on("click", new_game);
