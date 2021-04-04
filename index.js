@@ -29,7 +29,7 @@ game1_answers=[]
 function init(){
     init_navbar();
     timer = $("#timer");
-
+    $("#minor_rel_0").removeClass("btn-primary").addClass("btn-secondary checked");
 }
 
 function init_navbar() {
@@ -265,7 +265,8 @@ function verify_answer() {
             }
 
             // Reset all buttons
-            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary"); 
+            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary");
+            $("#minor_rel_0").removeClass("btn-primary").addClass("btn-secondary checked");
             break;
     }
 
