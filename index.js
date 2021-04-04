@@ -2,26 +2,26 @@ const SCALE_TYPE_COUNT = 2;
 const KEY_SIGNATURE_COUNT = 15;
 const BUTTON_COUNT = 12;
 
-var question_number = null;
-var game_number = null;
-var timer = null;
-var game_session = 0;
-var is_game_running = 0;
+let question_number = null;
+let game_number = null;
+let timer = null;
+let game_session = 0;
+let is_game_running = 0;
 
-var scale_type;
-var scale_type_text;
-var other_scale_type;
-var other_scale_type_text;
+let scale_type;
+let scale_type_text;
+let other_scale_type;
+let other_scale_type_text;
 
-var alteration_count;
-var alteration_type;
+let alteration_count;
+let alteration_type;
 
-var scale;
-var scale_alteration;
-var other_scale;
-var other_scale_alteration;
+let scale;
+let scale_alteration;
+let other_scale;
+let other_scale_alteration;
 
-var first_note_id;
+let first_note_id;
 
 function init(){
     $("#navbar").removeClass("hidden");
@@ -52,7 +52,7 @@ function new_game() {
     }
 
     // Prepare new game
-    $("#good_answer_div").removeClass("hidden");
+    $("#answer_div").removeClass("hidden");
     question_number=0;
     game_session++;
 
@@ -85,6 +85,8 @@ function new_game() {
 function run_game() {
     $("#submission"+game_number).on('click', verify_answer);
     timer.on('timerEnded', verify_answer);
+    $("#player_answer").html("");
+    $("#correct_answer").html("");
 
     is_game_running = true;
     next_question()
@@ -97,7 +99,6 @@ function next_question() {
         terminate_game()
         return;
     }
-
     let question = generate_question()
     $("#question_"+game_number).html(question)
 
@@ -124,9 +125,9 @@ function terminate_game() {
 }
 
 function generate_question() {
-    var maj_or_min = Math.floor(Math.random() * SCALE_TYPE_COUNT);
-    var scale_id = Math.floor(Math.random() * KEY_SIGNATURE_COUNT);
-    var expected_answer;
+    let maj_or_min = Math.floor(Math.random() * SCALE_TYPE_COUNT);
+    let scale_id = Math.floor(Math.random() * KEY_SIGNATURE_COUNT);
+    let expected_answer;
 
     expected_answer = document.getElementById("alt_"+scale_id).innerHTML.substring(0, 3); // Get note without tags
 
@@ -188,11 +189,12 @@ function generate_question() {
 function verify_answer() {
     if(!is_game_running){return;}
 
+
     let current_score_tag = $("#score");
     let current_score = current_score_tag.text();
 
     let player_answer = $("#player_answer");
-    let good_answer = $("#good_answer");
+    let correct_answer = $("#correct_answer");
 
     switch(game_number) {
         case 1:
@@ -201,8 +203,8 @@ function verify_answer() {
             let nb_alt = $("#nb_alt").val();
             if(type_alt === "Aucune") player_answer.html(nb_alt); // Do not show type of alterations if there are none
             else player_answer.html(nb_alt+" "+type_alt);
-            if(alteration_type === "Aucune") good_answer.html(alteration_count) // Do not show type of alterations if there are none
-            else good_answer.html(alteration_count+" "+alteration_type)
+            if(alteration_type === "Aucune") correct_answer.html(alteration_count) // Do not show type of alterations if there are none
+            else correct_answer.html(alteration_count+" "+alteration_type)
             if(type_alt === alteration_type && nb_alt === alteration_count) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
             break;
         case 2:
@@ -211,8 +213,8 @@ function verify_answer() {
             let scale_wanted = $("#scale_wanted").val();
             if(alteration_wanted === "Aucune") player_answer.html(scale_wanted); // Do not show scale alteration if there is none
             else player_answer.html(scale_wanted+" "+alteration_wanted);
-            if(scale_alteration === "Aucune") good_answer.html(scale) // Do not show scale alteration if there is none
-            else good_answer.html(scale+" "+scale_alteration)
+            if(scale_alteration === "Aucune") correct_answer.html(scale) // Do not show scale alteration if there is none
+            else correct_answer.html(scale+" "+scale_alteration)
             if(alteration_wanted === scale_alteration && scale_wanted === scale) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
             break;
         case 3:
@@ -233,14 +235,14 @@ function verify_answer() {
             // Use separation intervals of a major scale to determine expected answer
             if(scale_type === "maj_") {
                 let i = first_note_id;
-                good_answer.html(
-                            document.getElementById("select_"+i).innerHTML + ", "+
-                            document.getElementById("select_"+(i+2)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+4)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+5)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+7)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+9)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+11)%12).innerHTML);
+                correct_answer.html(
+                            $("#select_"+i).html() + ", "+
+                            $("#select_"+(i+2)%12).html() + ", "+
+                            $("#select_"+(i+4)%12).html() + ", "+
+                            $("#select_"+(i+5)%12).html() + ", "+
+                            $("#select_"+(i+7)%12).html() + ", "+
+                            $("#select_"+(i+9)%12).html() + ", "+
+                            $("#select_"+(i+11)%12).html());
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
                     && checked.includes((i+4)%12)
@@ -252,14 +254,14 @@ function verify_answer() {
             // Use separation intervals of a minor scale to determine expected answer
             else {
                 let i = first_note_id;
-                good_answer.html(
-                            document.getElementById("select_"+i).innerHTML + ", "+
-                            document.getElementById("select_"+(i+2)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+3)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+5)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+7)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+8)%12).innerHTML + ", "+
-                            document.getElementById("select_"+(i+10)%12).innerHTML);
+                correct_answer.html(
+                            $("#select_"+i).html() + ", "+
+                            $("#select_"+(i+2)%12).html() + ", "+
+                            $("#select_"+(i+3)%12).html() + ", "+
+                            $("#select_"+(i+5)%12).html() + ", "+
+                            $("#select_"+(i+7)%12).html() + ", "+
+                            $("#select_"+(i+8)%12).html() + ", "+
+                            $("#select_"+(i+10)%12).html());
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
                     && checked.includes((i+3)%12)
@@ -267,6 +269,10 @@ function verify_answer() {
                     && checked.includes((i+7)%12)
                     && checked.includes((i+8)%12)
                     && checked.includes((i+10)%12)) current_score_tag.html(++current_score);
+            }
+            // Reset buttons to unchecked
+            for (let i = 0; i < BUTTON_COUNT; i++) {
+                $("#select_ht_"+i).prop("checked",false)
             }
             break;
         case 4:
@@ -280,15 +286,15 @@ function verify_answer() {
             }
 
             // Get value (note) of checked button to build player answer
-            let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
+            let note = $("#minor_rel_"+minor_rel).text();
             player_answer.html(note);
 
             if(other_scale_alteration === "Aucune") {
-                good_answer.html(other_scale);
+                correct_answer.html(other_scale);
                 if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")) current_score_tag.html(++current_score);
             }
             else {
-                good_answer.html(other_scale+" "+other_scale_alteration);
+                correct_answer.html(other_scale+" "+other_scale_alteration);
                 if(note.includes(other_scale+" "+other_scale_alteration)) current_score_tag.html(++current_score);
             }
 
