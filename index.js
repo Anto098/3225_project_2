@@ -172,7 +172,7 @@ function generate_question() {
             }
         }
     }
-
+    $("#question_nb_game"+game_number).text("Question #"+question_number);
     switch(game_number) {
         case 1:
             return "Quelle sont les altérations de la gamme de "+document.getElementById(scale_type+scale_id).innerHTML+" et combien y en a-t-il?";
