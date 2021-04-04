@@ -95,7 +95,7 @@
                     <select id="type_alt" name="type_alt">
                         <option value="♭">♭</option>
                         <option value="♯">♯</option>
-                        <option value="none">Aucune</option>
+                        <option value="Aucune">Aucune</option>
                     </select>
                     <br>
                     <label for="nb_alt"><b>Sélectionnez le nombre d'altérations: </b></label>
@@ -129,7 +129,7 @@
                     <select id="alteration_wanted" name="alteration_wanted">
                         <option value="♭">♭</option>
                         <option value="♯">♯</option>
-                        <option value="none">Aucune</option>
+                        <option value="Aucune">Aucune</option>
                     </select>
                     <br>
                     <input type="submit" value="Soumettre" id="submission2">
@@ -150,20 +150,20 @@
                     <b>Sélectionnez les demi-tons a l'intérieur de la gamme: </b><br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-2"><input type="checkbox" id="select_ht_0" name="select_ht_0"><br><label for="select_ht_0">do</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_1" name="select_ht_1"><br><label for="select_ht_1">do ♯/ré ♭</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_2" name="select_ht_2"><br><label for="select_ht_2">ré</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_3" name="select_ht_3"><br><label for="select_ht_3">ré ♯/mi ♭</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_4" name="select_ht_4"><br><label for="select_ht_4">mi</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_5" name="select_ht_5"><br><label for="select_ht_5">fa</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_0" name="select_ht_0"><br><label id="select_0" for="select_ht_0">do</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_1" name="select_ht_1"><br><label id="select_1" for="select_ht_1">do ♯/ré ♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_2" name="select_ht_2"><br><label id="select_2" for="select_ht_2">ré</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_3" name="select_ht_3"><br><label id="select_3" for="select_ht_3">ré ♯/mi ♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_4" name="select_ht_4"><br><label id="select_4" for="select_ht_4">mi</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_5" name="select_ht_5"><br><label id="select_5" for="select_ht_5">fa</label></div>
                         </div>
                         <div class="row">
-                            <div class="col-2"><input type="checkbox" id="select_ht_6" name="select_ht_6"><br><label for="select_ht_6">fa ♯/sol ♭</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_7" name="select_ht_7"><br><label for="select_ht_7">sol</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_8" name="select_ht_8"><br><label for="select_ht_8">sol ♯/la ♭</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_9" name="select_ht_9"><br><label for="select_ht_9">la</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_10" name="select_ht_10"><br><label for="select_ht_10">la ♯/si ♭</label></div>
-                            <div class="col-2"><input type="checkbox" id="select_ht_11" name="select_ht_11"><br><label for="select_ht_11">si</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_6" name="select_ht_6"><br><label id="select_6" for="select_ht_6">fa ♯/sol ♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_7" name="select_ht_7"><br><label id="select_7" for="select_ht_7">sol</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_8" name="select_ht_8"><br><label id="select_8" for="select_ht_8">sol ♯/la ♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_9" name="select_ht_9"><br><label id="select_9" for="select_ht_9">la</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_10" name="select_ht_10"><br><label id="select_10" for="select_ht_10">la ♯/si ♭</label></div>
+                            <div class="col-2"><input type="checkbox" id="select_ht_11" name="select_ht_11"><br><label id="select_11" for="select_ht_11">si/do ♭</label></div>
                         </div>
                     </div>
 
@@ -197,7 +197,7 @@
                             <div class="col-2"><button type="button" id="minor_rel_8" name="minor_rel" class="btn btn-primary button_size js_bq4">sol ♯/la ♭</button></div>
                             <div class="col-2"><button type="button" id="minor_rel_9" name="minor_rel" class="btn btn-primary button_size js_bq4">la</button></div>
                             <div class="col-2"><button type="button" id="minor_rel_10" name="minor_rel" class="btn btn-primary button_size js_bq4">la ♯/si ♭</button></div>
-                            <div class="col-2"><button type="button" id="minor_rel_11" name="minor_rel" class="btn btn-primary button_size js_bq4">si</button></div>
+                            <div class="col-2"><button type="button" id="minor_rel_11" name="minor_rel" class="btn btn-primary button_size js_bq4">si/do ♭</button></div>
                         </div>
                     </div>
                     <br>
