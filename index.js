@@ -196,6 +196,7 @@ function verify_answer() {
     let player_answer = $("#player_answer");
     let correct_answer = $("#correct_answer");
 
+    let answer_is_correct = false;
     switch(game_number) {
         case 1:
             // Compare player answer with expected answer for alteration count and (depending) alteration type
@@ -205,7 +206,10 @@ function verify_answer() {
             else player_answer.html(nb_alt+" "+type_alt);
             if(alteration_type === "Aucune") correct_answer.html(alteration_count) // Do not show type of alterations if there are none
             else correct_answer.html(alteration_count+" "+alteration_type)
-            if(type_alt === alteration_type && nb_alt === alteration_count) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
+            if(type_alt === alteration_type && nb_alt === alteration_count){ // Increment score if answers match for both arguments
+                current_score_tag.html(++current_score);
+                answer_is_correct = true;
+            }
             break;
         case 2:
             // Compare player answer with expected answer for scale and (depending) scale alteration
@@ -215,7 +219,10 @@ function verify_answer() {
             else player_answer.html(scale_wanted+" "+alteration_wanted);
             if(scale_alteration === "Aucune") correct_answer.html(scale) // Do not show scale alteration if there is none
             else correct_answer.html(scale+" "+scale_alteration)
-            if(alteration_wanted === scale_alteration && scale_wanted === scale) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
+            if(alteration_wanted === scale_alteration && scale_wanted === scale){  // Increment score if answers match for both arguments
+                current_score_tag.html(++current_score);
+                answer_is_correct = true;
+            }
             break;
         case 3:
             let s = ""; // String containing player answer (related to checked[])
@@ -227,7 +234,7 @@ function verify_answer() {
             }
             s = "";
             for(let i = 0; i < checked.length; i++) {
-                s += document.getElementById("select_"+checked[i]).innerHTML + ", "; // Add values (notes) of each checked button to build player answer
+                s += $("#select_"+checked[i]).text() + ", "; // Add values (notes) of each checked button to build player answer
             }
             s = s.substring(0, s.length - 2);
             player_answer.html(s)
@@ -249,7 +256,10 @@ function verify_answer() {
                     && checked.includes((i+5)%12)
                     && checked.includes((i+7)%12)
                     && checked.includes((i+9)%12)
-                    && checked.includes((i+11)%12)) current_score_tag.html(++current_score);
+                    && checked.includes((i+11)%12)){
+                    current_score_tag.html(++current_score);
+                    answer_is_correct = true;
+                }
             }
             // Use separation intervals of a minor scale to determine expected answer
             else {
@@ -268,7 +278,10 @@ function verify_answer() {
                     && checked.includes((i+5)%12)
                     && checked.includes((i+7)%12)
                     && checked.includes((i+8)%12)
-                    && checked.includes((i+10)%12)) current_score_tag.html(++current_score);
+                    && checked.includes((i+10)%12)){
+                    current_score_tag.html(++current_score);
+                    answer_is_correct = true;
+                }
             }
             // Reset buttons to unchecked
             for (let i = 0; i < BUTTON_COUNT; i++) {
@@ -276,11 +289,10 @@ function verify_answer() {
             }
             break;
         case 4:
-
             // Get id of checked button
             let minor_rel = null;
             for (let i = 0; i < BUTTON_COUNT; i++) {
-                if(document.getElementById("minor_rel_"+i).className.includes("checked")) {
+                if($("#minor_rel_"+i).hasClass("checked")) {
                     minor_rel = i;
                 }
             }
@@ -291,17 +303,42 @@ function verify_answer() {
 
             if(other_scale_alteration === "Aucune") {
                 correct_answer.html(other_scale);
-                if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")) current_score_tag.html(++current_score);
+                if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")){
+                    current_score_tag.html(++current_score);
+                    answer_is_correct = true;
+                }
             }
             else {
                 correct_answer.html(other_scale+" "+other_scale_alteration);
-                if(note.includes(other_scale+" "+other_scale_alteration)) current_score_tag.html(++current_score);
+                if(note.includes(other_scale+" "+other_scale_alteration)){
+                    current_score_tag.html(++current_score);
+                    answer_is_correct = true;
+                }
             }
 
             // Reset all buttons
             $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary");
             $("#minor_rel_0").removeClass("btn-primary").addClass("btn-secondary checked");
             break;
+    }
+
+    let answer_validity = $("#answer_validity");
+    let player_answer_div = $("#player_answer_div");
+    let correct_answer_div = $("#correct_answer_div");
+
+    if(answer_is_correct){
+        if(answer_validity.hasClass("hidden")){
+            answer_validity.removeClass("hidden");
+        }
+        player_answer_div.addClass("hidden");
+        correct_answer_div.addClass("hidden");
+    }
+    else{
+        if(player_answer_div.hasClass("hidden") && correct_answer_div.hasClass("hidden")){
+            player_answer_div.removeClass("hidden");
+            correct_answer_div.removeClass("hidden");
+        }
+        answer_validity.addClass("hidden");
     }
 
     next_question();
