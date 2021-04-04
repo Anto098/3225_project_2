@@ -196,26 +196,28 @@ function verify_answer() {
 
     switch(game_number) {
         case 1:
+            // Compare player answer with expected answer for alteration count and (depending) alteration type
             let type_alt = $("#type_alt").val();
             let nb_alt = $("#nb_alt").val();
-            if(type_alt === "Aucune") player_answer.html(nb_alt);
+            if(type_alt === "Aucune") player_answer.html(nb_alt); // Do not show type of alterations if there are none
             else player_answer.html(nb_alt+" "+type_alt);
-            if(alteration_type === "Aucune") good_answer.html(alteration_count)
+            if(alteration_type === "Aucune") good_answer.html(alteration_count) // Do not show type of alterations if there are none
             else good_answer.html(alteration_count+" "+alteration_type)
-            if(type_alt === alteration_type && nb_alt === alteration_count) current_score_tag.html(++current_score);
+            if(type_alt === alteration_type && nb_alt === alteration_count) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
             break;
         case 2:
+            // Compare player answer with expected answer for scale and (depending) scale alteration
             let alteration_wanted = $("#alteration_wanted").val();
             let scale_wanted = $("#scale_wanted").val();
-            if(alteration_wanted === "Aucune") player_answer.html(scale_wanted);
+            if(alteration_wanted === "Aucune") player_answer.html(scale_wanted); // Do not show scale alteration if there is none
             else player_answer.html(scale_wanted+" "+alteration_wanted);
-            if(scale_alteration === "Aucune") good_answer.html(scale)
+            if(scale_alteration === "Aucune") good_answer.html(scale) // Do not show scale alteration if there is none
             else good_answer.html(scale+" "+scale_alteration)
-            if(alteration_wanted === scale_alteration && scale_wanted === scale) current_score_tag.html(++current_score);
+            if(alteration_wanted === scale_alteration && scale_wanted === scale) current_score_tag.html(++current_score); // Increment score if answers match for both arguments
             break;
         case 3:
-            let s = "";
-            let checked = []
+            let s = ""; // String containing player answer (related to checked[])
+            let checked = [] // Array containing checked buttons (related to s)
             for (let i = 0; i < BUTTON_COUNT; i++) {
                 if($("#select_ht_"+i).prop("checked") === true) {
                     checked.push(i)
@@ -223,11 +225,12 @@ function verify_answer() {
             }
             s = "";
             for(let i = 0; i < checked.length; i++) {
-                s += document.getElementById("select_"+checked[i]).innerHTML + ", ";
+                s += document.getElementById("select_"+checked[i]).innerHTML + ", "; // Add values (notes) of each checked button to build player answer
             }
             s = s.substring(0, s.length - 2);
             player_answer.html(s)
 
+            // Use separation intervals of a major scale to determine expected answer
             if(scale_type === "maj_") {
                 let i = first_note_id;
                 good_answer.html(
@@ -246,6 +249,7 @@ function verify_answer() {
                     && checked.includes((i+9)%12)
                     && checked.includes((i+11)%12)) current_score_tag.html(++current_score);
             }
+            // Use separation intervals of a minor scale to determine expected answer
             else {
                 let i = first_note_id;
                 good_answer.html(
@@ -267,6 +271,7 @@ function verify_answer() {
             break;
         case 4:
 
+            // Get id of checked button
             let minor_rel = null;
             for (let i = 0; i < BUTTON_COUNT; i++) {
                 if(document.getElementById("minor_rel_"+i).className.includes("checked")) {
@@ -274,7 +279,7 @@ function verify_answer() {
                 }
             }
 
-
+            // Get value (note) of checked button to build player answer
             let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
             player_answer.html(note);
 
