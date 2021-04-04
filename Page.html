@@ -69,14 +69,15 @@
             
     <br>
     <h2>Veuillez choisir un jeu :</h2>
-    <div class="container w-50 bg-light hidden" id="navbar">
+    <h2>vous avez un temps imparti etc...</h2>
+    <div class="container w-50 bg-light hidden p-1" id="navbar">
         <div class="row">
             <div class="col"><button type="button" id="button_game1" name="game" class="btn btn-primary button_size">Jeu 1</button></div>
             <div class="col"><button type="button" id="button_game2" name="game" class="btn btn-primary button_size">Jeu 2</button></div>
             <div class="col"><button type="button" id="button_game3" name="game" class="btn btn-primary button_size">Jeu 3</button></div>
             <div class="col"><button type="button" id="button_game4" name="game" class="btn btn-primary button_size">Jeu 4</button></div>
-            <div class="col">Timer <b id="timer">10</b></div>
-            <div class="col">Score <b id="score">0</b></div>
+            <div class="col big_font">Timer <b id="timer">0</b></div>
+            <div class="col big_font">Score <b id="score">0</b></div>
         </div>
     </div>
 
@@ -85,8 +86,8 @@
     <div class="container" id="game_container">
         <div class="container-fluid hidden" id="game1">
             <div class="row">
-                <div class="col-3"></div>
-                <div class="game col-6">
+                <div class="col-2"></div>
+                <div class="game col-8">
                     <h2>Jeu 1: Spécifier les type et nombre d'une tonalité</h2>
                     <p><i id="question_1">Exemple de question: Quelles sont les altérations de la gamme de fa mineur et combien y en a-t-il?</i></p>
                     <label for="type_alt"><b>Sélectionnez le type d'altérations: </b></label>
@@ -101,14 +102,14 @@
                     <br>
                     <input type="submit" value="Soumettre" id="submission1">
                 </div>
-                <div class="col-3"></div>
+                <div class="col-2"></div>
             </div>
         </div>
 
         <div class="container-fluid hidden" id="game2">
             <div class="row">
-                <div class="col-3"></div>
-                <div class="game col-6">
+                <div class="col-2"></div>
+                <div class="game col-8">
                     <h2>Jeu 2: Spécifier quelle tonalité possède un nombre donné d'altérations</h2>
                     <p><i id="question_2">Exemple de question: Quelle est la tonalité majeure qui contient 3 dièses?</i></p>
                     <label for="scale_wanted"><b>Sélectionnez la gamme recherchée: </b></label>
@@ -131,7 +132,7 @@
                     <br>
                     <input type="submit" value="Soumettre" id="submission2">
                 </div>
-                <div class="col-3"></div>
+                <div class="col-2"></div>
             </div>
         </div>
 
