@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>Activité musicale: cycle des quintes et tonalité relative</h1>
-    <table id="circle_of_fifths" class="container table table-responsive px-0">
+    <table id="circle_of_fifths" class="container table table-responsive px-0 custom-border">
         <tr id="alterations" class="upper_tr">
             <th scope="row">Tonalité</th>
             <th id="alt_0" scope="col">7 ♭<br><img src="Images/1024px-C-flat-major_a-flat-minor.png" alt="do♭ majeur/la♭ mineur" height="80" width="80"></th>
@@ -68,9 +68,7 @@
     </table>
             
     <br>
-    <h2>Veuillez choisir un jeu :</h2>
-    <h2>vous avez un temps imparti etc...</h2>
-    <div class="container w-50 bg-light hidden p-1" id="navbar">
+    <div class="container w-50 bg-light hidden p-1 custom-border" id="navbar">
         <div class="row">
             <div class="col"><button type="button" id="button_game1" name="game" class="btn btn-primary button_size">Jeu 1</button></div>
             <div class="col"><button type="button" id="button_game2" name="game" class="btn btn-primary button_size">Jeu 2</button></div>
@@ -84,6 +82,13 @@
     <br>
 
     <div class="container" id="game_container">
+
+        <div class="container-fluid hidden" id="main_menu">
+            <h2>Veuillez choisir un jeu ci-dessus.</h2>
+            <h2>Il y a 5 questions par jeu (générées dynamiquement).</h2>
+            <h2>Vous avez 30 secondes par question.</h2>
+        </div>
+
         <div class="container-fluid hidden" id="game1">
             <div class="row">
                 <div class="col-2"></div>
@@ -100,7 +105,7 @@
                     <label for="nb_alt"><b>Sélectionnez le nombre d'altérations: </b></label>
                     <input type="number" id="nb_alt" name="nb_alt" min="0" max="7">
                     <br>
-                    <input type="submit" value="Soumettre" id="submission1">
+                    <input type="submit" class="btn btn-success m-2" value="Soumettre" id="submission1">
                 </div>
                 <div class="col-2"></div>
             </div>
@@ -130,7 +135,7 @@
                         <option value="Aucune">Aucune</option>
                     </select>
                     <br>
-                    <input type="submit" value="Soumettre" id="submission2">
+                    <input type="submit" class="btn btn-success m-2" value="Soumettre" id="submission2">
                 </div>
                 <div class="col-2"></div>
             </div>
@@ -164,7 +169,7 @@
                         </div>
                     </div>
 
-                    <input type="submit" value="Soumettre" id="submission3">
+                    <input type="submit" class="btn btn-success m-2" value="Soumettre" id="submission3">
                 </div>
                 <div class="col-2"></div>
             </div>
@@ -197,11 +202,15 @@
                         </div>
                     </div>
                     <br>
-                    <input type="submit" value="Soumettre"  id="submission4">
+                    <input type="submit" class="btn btn-success m-2" value="Soumettre"  id="submission4">
                 </div>
                 <div class="col-2"></div>
             </div>
         </div>
     </div>
+
+
+
+
   </body>
 </html>

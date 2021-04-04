@@ -27,33 +27,35 @@ game1_data=[]
 game1_answers=[]
 
 function init(){
-    init_navbar();
-    timer = $("#timer");
-
-}
-
-function init_navbar() {
-    navbar = $("#navbar");
-    navbar.removeClass("hidden");
+    $("#navbar").removeClass("hidden");
 
     for (let i=1; i<=4; i++) {
         $("#button_game"+i).on("click", new_game);
     }
+
+    $("#main_menu").removeClass("hidden");
+
+    timer = $("#timer");
+
 }
 
 function new_game() {
-    // Reinitialize timer/score and delete event listeners on last game played
+    // Hide all games
     $("#game_container").children().addClass("hidden");
+
+    // Reinitialize timer/score
     timer.html(10);
     $("#score").html(0);
 
-    question_number=0;
-    game_session++;
-
+    // delete event listeners on last game played
     if(game_number) {
         $("#submission"+game_number).off('click', verify_answer);
         timer.off('timerEnded', verify_answer);
     }
+
+    // Prepare new game
+    question_number=0;
+    game_session++;
 
     switch(this.id) {
         case "button_game1":
@@ -96,6 +98,7 @@ function next_question() {
         is_game_running = false;
 
         console.log("Jeu terminé");
+        $("#main_menu").removeClass("hidden");
         return;
     }
 
