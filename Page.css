@@ -1,4 +1,4 @@
-/* ///////////////// TAGS ///////////////// */
+/* TAGS */
 body {
     background-color: lightblue;
 }
@@ -32,7 +32,7 @@ h2 {
 p {
     text-align: center;
 }
-/* ///////////////// CLASSES ///////////////// */
+/* CLASSES */
 .upper_tr{
     border-top:solid;
     border-color:lightskyblue;
