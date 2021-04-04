@@ -23,9 +23,6 @@ var other_scale_alteration;
 
 var first_note_id;
 
-game1_data=[]
-game1_answers=[]
-
 function init(){
     $("#navbar").removeClass("hidden");
 
@@ -37,6 +34,7 @@ function init(){
 
     timer = $("#timer");
 
+    $("#minor_rel_0").removeClass("btn-primary").addClass("btn-secondary checked");
 }
 
 function new_game() {
@@ -54,28 +52,29 @@ function new_game() {
     }
 
     // Prepare new game
+    $("#good_answer_div").removeClass("hidden");
     question_number=0;
     game_session++;
 
     switch(this.id) {
         case "button_game1":
-            $("#game1").removeClass("hidden")
+            $("#game1").removeClass("hidden");
             game_number = 1;
             break;
         case "button_game2":
-            $("#game2").removeClass("hidden")
+            $("#game2").removeClass("hidden");
             game_number = 2;
             break;
         case "button_game3":
-            $("#game3").removeClass("hidden")
+            $("#game3").removeClass("hidden");
             game_number = 3;
             break;
         case "button_game4":
-            $("#game4").removeClass("hidden")
+            $("#game4").removeClass("hidden");
             game_number = 4;
             $(".js_bq4").on("click", function() {
-                $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary")
-                $(this).removeClass("btn-primary").addClass("btn-secondary checked")
+                $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary");
+                $(this).removeClass("btn-primary").addClass("btn-secondary checked");
             })
             break;
     }
@@ -95,10 +94,7 @@ function next_question() {
     question_number++;
 
     if(question_number>5) {
-        is_game_running = false;
-
-        console.log("Jeu terminé");
-        $("#main_menu").removeClass("hidden");
+        terminate_game()
         return;
     }
 
@@ -108,6 +104,25 @@ function next_question() {
     update_timer(30, question_number, game_session);
 }
 
+function terminate_game() {
+    // Game has ended, so we display main menu with the score obtained
+    is_game_running = false;
+
+    console.log("Jeu terminé");
+
+    let score = $("#score").text();
+    $("#game_container").children().addClass("hidden");
+    $("#main_menu").removeClass("hidden");
+    $("#obtained_score").html(score)
+    $("#score_message").removeClass("hidden");
+
+    // Updating score history if score obtained is new maximum
+    let max_score_tag = $("#score_history"+game_number)
+    if(score > max_score_tag.text()) {
+        max_score_tag.html(score);
+    }
+}
+
 function generate_question() {
     var maj_or_min = Math.floor(Math.random() * SCALE_TYPE_COUNT);
     var scale_id = Math.floor(Math.random() * KEY_SIGNATURE_COUNT);
@@ -115,7 +130,7 @@ function generate_question() {
 
     expected_answer = document.getElementById("alt_"+scale_id).innerHTML.substring(0, 3); // Get note without tags
 
-    if(maj_or_min == 1) {
+    if(maj_or_min === 1) {
         scale_type = "maj_";
         other_scale_type = "min_";
     }
@@ -128,20 +143,20 @@ function generate_question() {
     other_scale_type_text = document.getElementById(other_scale_type).innerHTML.split(" ")[1];
 
     alteration_count = expected_answer.split(" ")[0]; // Get alteration count from appropriate column header
-    if(alteration_count == 0) alteration_type = "Aucune";
+    if(alteration_count === 0) alteration_type = "Aucune";
     else alteration_type = expected_answer.split(" ")[1]; // Get alteration type from appropriate column header unless count is 0
 
     scale = document.getElementById(scale_type+scale_id).innerHTML.split(" ")[0]; // Get scale root from appropriate cell
     scale_alteration = document.getElementById(scale_type+scale_id).innerHTML.split(" ")[1]; // Get scale alteration from appropriate cell
-    if(scale_alteration == "mineur" || scale_alteration == "majeur") scale_alteration = "Aucune";
+    if(scale_alteration === "mineur" || scale_alteration === "majeur") scale_alteration = "Aucune";
 
     other_scale = document.getElementById(other_scale_type+scale_id).innerHTML.split(" ")[0];
     other_scale_alteration = document.getElementById(other_scale_type+scale_id).innerHTML.split(" ")[1];
-    if(other_scale_alteration == "mineur" || other_scale_alteration == "majeur") other_scale_alteration = "Aucune";
+    if(other_scale_alteration === "mineur" || other_scale_alteration === "majeur") other_scale_alteration = "Aucune";
 
     // Get button associated with scale root
-    if(scale_alteration == "Aucune") {
-        for(var i = 0; i < BUTTON_COUNT; i++) {
+    if(scale_alteration === "Aucune") {
+        for(let i = 0; i < BUTTON_COUNT; i++) {
             let note = document.getElementById("select_"+i).innerHTML;
             if(note.includes(scale) && !note.includes("♯") && !note.includes("♭")) {
                 first_note_id = i;
@@ -149,7 +164,7 @@ function generate_question() {
         }
     }
     else {
-        for(var i = 0; i < BUTTON_COUNT; i++) {
+        for(let i = 0; i < BUTTON_COUNT; i++) {
             let note = document.getElementById("select_"+i).innerHTML;
             if(note.includes(scale+" "+scale_alteration)) {
                 first_note_id = i;
@@ -161,7 +176,7 @@ function generate_question() {
         case 1:
             return "Quelle sont les altérations de la gamme de "+document.getElementById(scale_type+scale_id).innerHTML+" et combien y en a-t-il?";
         case 2:
-            if(alteration_type != "Aucune") return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" "+alteration_type+"?";
+            if(alteration_type !== "Aucune") return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" "+alteration_type+"?";
             else return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" altérations?";
         case 3:
             return "Quelles sont les notes de la gamme de "+document.getElementById(scale_type+scale_id).innerHTML+"?";
@@ -173,50 +188,55 @@ function generate_question() {
 function verify_answer() {
     if(!is_game_running){return;}
 
-    let current_score = $("#score").text()
+    let current_score_tag = $("#score");
+    let current_score = current_score_tag.text();
+
+    let player_answer = $("#player_answer");
+    let good_answer = $("#good_answer");
 
     switch(game_number) {
         case 1:
             let type_alt = $("#type_alt").val();
             let nb_alt = $("#nb_alt").val();
-            if(type_alt == "Aucune") console.log("Réponse entrée: ", nb_alt);
-            else console.log("Réponse entrée: ", nb_alt, type_alt);
-            if(alteration_type == "Aucune") console.log("Réponse attendue: ", alteration_count);
-            else console.log("Réponse attendue: ", alteration_count, alteration_type);
-            if(type_alt == alteration_type && nb_alt == alteration_count) $("#score").html(++current_score);
+            if(type_alt === "Aucune") player_answer.html(nb_alt);
+            else player_answer.html(nb_alt+" "+type_alt);
+            if(alteration_type === "Aucune") good_answer.html(alteration_count)
+            else good_answer.html(alteration_count+" "+alteration_type)
+            if(type_alt === alteration_type && nb_alt === alteration_count) current_score_tag.html(++current_score);
             break;
         case 2:
             let alteration_wanted = $("#alteration_wanted").val();
             let scale_wanted = $("#scale_wanted").val();
-            if(alteration_wanted == "Aucune") console.log("Réponse entrée: ", scale_wanted);
-            else console.log("Réponse entrée: ", scale_wanted, alteration_wanted);
-            if(scale_alteration == "Aucune") console.log("Réponse attendue: ", scale);
-            else console.log("Réponse attendue: ", scale, scale_alteration);
-            if(alteration_wanted == scale_alteration && scale_wanted == scale) $("#score").html(++current_score);
+            if(alteration_wanted === "Aucune") player_answer.html(scale_wanted);
+            else player_answer.html(scale_wanted+" "+alteration_wanted);
+            if(scale_alteration === "Aucune") good_answer.html(scale)
+            else good_answer.html(scale+" "+scale_alteration)
+            if(alteration_wanted === scale_alteration && scale_wanted === scale) current_score_tag.html(++current_score);
             break;
         case 3:
             let s = "";
             let checked = []
-            for (var i = 0; i < BUTTON_COUNT; i++) {
-                if($("#select_ht_"+i).prop("checked") == true) {
+            for (let i = 0; i < BUTTON_COUNT; i++) {
+                if($("#select_ht_"+i).prop("checked") === true) {
                     checked.push(i)
                 }
             }
             s = "";
-            for(var i = 0; i < checked.length; i++) {
+            for(let i = 0; i < checked.length; i++) {
                 s += document.getElementById("select_"+checked[i]).innerHTML + ", ";
             }
             s = s.substring(0, s.length - 2);
-            console.log("Réponse entrée: ", s);
-            if(scale_type == "maj_") {
-                var i = first_note_id;
-                console.log("Réponse attendue: ",
-                            document.getElementById("select_"+i).innerHTML + ", ",
-                            document.getElementById("select_"+(i+2)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+4)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+5)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+7)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+9)%12).innerHTML + ", ",
+            player_answer.html(s)
+
+            if(scale_type === "maj_") {
+                let i = first_note_id;
+                good_answer.html(
+                            document.getElementById("select_"+i).innerHTML + ", "+
+                            document.getElementById("select_"+(i+2)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+4)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+5)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+7)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+9)%12).innerHTML + ", "+
                             document.getElementById("select_"+(i+11)%12).innerHTML);
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
@@ -224,17 +244,17 @@ function verify_answer() {
                     && checked.includes((i+5)%12)
                     && checked.includes((i+7)%12)
                     && checked.includes((i+9)%12)
-                    && checked.includes((i+11)%12)) $("#score").html(++current_score);
+                    && checked.includes((i+11)%12)) current_score_tag.html(++current_score);
             }
             else {
-                var i = first_note_id;
-                console.log("Réponse attendue: ",
-                            document.getElementById("select_"+i).innerHTML + ", ",
-                            document.getElementById("select_"+(i+2)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+3)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+5)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+7)%12).innerHTML + ", ",
-                            document.getElementById("select_"+(i+8)%12).innerHTML + ", ",
+                let i = first_note_id;
+                good_answer.html(
+                            document.getElementById("select_"+i).innerHTML + ", "+
+                            document.getElementById("select_"+(i+2)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+3)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+5)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+7)%12).innerHTML + ", "+
+                            document.getElementById("select_"+(i+8)%12).innerHTML + ", "+
                             document.getElementById("select_"+(i+10)%12).innerHTML);
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
@@ -242,13 +262,13 @@ function verify_answer() {
                     && checked.includes((i+5)%12)
                     && checked.includes((i+7)%12)
                     && checked.includes((i+8)%12)
-                    && checked.includes((i+10)%12)) $("#score").html(++current_score);
+                    && checked.includes((i+10)%12)) current_score_tag.html(++current_score);
             }
             break;
         case 4:
 
-            var minor_rel = null;
-            for (var i = 0; i < BUTTON_COUNT; i++) {
+            let minor_rel = null;
+            for (let i = 0; i < BUTTON_COUNT; i++) {
                 if(document.getElementById("minor_rel_"+i).className.includes("checked")) {
                     minor_rel = i;
                 }
@@ -256,15 +276,15 @@ function verify_answer() {
 
 
             let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
-            console.log("Réponse entrée: ", note);
+            player_answer.html(note);
 
-            if(other_scale_alteration == "Aucune") {
-                console.log("Réponse attendue: ", other_scale);
-                if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")) $("#score").html(++current_score);
+            if(other_scale_alteration === "Aucune") {
+                good_answer.html(other_scale);
+                if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")) current_score_tag.html(++current_score);
             }
             else {
-                console.log("Réponse attendue: ", other_scale, other_scale_alteration);
-                if(note.includes(other_scale+" "+other_scale_alteration)) $("#score").html(++current_score);
+                good_answer.html(other_scale+" "+other_scale_alteration);
+                if(note.includes(other_scale+" "+other_scale_alteration)) current_score_tag.html(++current_score);
             }
 
             // Reset all buttons
@@ -284,7 +304,7 @@ function update_timer(time, n, s) {
 
     timer.html(time);
 
-    if(time==0) {
+    if(time===0) {
         // We send an event to the timer, and the run_game() functions will handle it.
         document.getElementById("timer").dispatchEvent(new CustomEvent('timerEnded'));
         return;

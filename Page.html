@@ -84,6 +84,10 @@
     <div class="container" id="game_container">
 
         <div class="container-fluid hidden" id="main_menu">
+            <div class="hidden" id="score_message">
+                <h2>Score obtenu : <b id="obtained_score"></b></h2>
+                <br>
+            </div>
             <h2>Veuillez choisir un jeu ci-dessus.</h2>
             <h2>Il y a 5 questions par jeu (générées dynamiquement).</h2>
             <h2>Vous avez 30 secondes par question.</h2>
@@ -209,7 +213,24 @@
         </div>
     </div>
 
+    <br>
 
+    <div class="container w-50 hidden" id="good_answer_div">
+        <div>Vous avez répondu : <b id="player_answer"></b></div>
+        <div class="text-success">La bonne réponse était : <b id="good_answer"></b></div>
+    </div>
+
+    <br>
+
+    <div class="container w-50 bg-light p-1 custom-border" id="score_history">
+        <div class="row">
+            <div class="col-3 big_font">Meilleurs scores :</div>
+            <div class="col-2 big_font">Jeu 1 : <b id="score_history1">0</b></div>
+            <div class="col-2 big_font">Jeu 2 : <b id="score_history2">0</b></div>
+            <div class="col-2 big_font">Jeu 3 : <b id="score_history3">0</b></div>
+            <div class="col-2 big_font">Jeu 4 : <b id="score_history4">0</b></div>
+        </div>
+    </div>
 
 
   </body>
