@@ -95,7 +95,7 @@ function next_question() {
     if(question_number>5) {
         is_game_running = false;
 
-        console.log("jeu termine");
+        console.log("Jeu terminé");
         return;
     }
 
@@ -176,28 +176,45 @@ function verify_answer() {
         case 1:
             let type_alt = $("#type_alt").val();
             let nb_alt = $("#nb_alt").val();
-            console.log(type_alt, nb_alt);
-            console.log(alteration_type, alteration_count);
+            if(type_alt == "Aucune") console.log("Réponse entrée: ", nb_alt);
+            else console.log("Réponse entrée: ", nb_alt, type_alt);
+            if(alteration_type == "Aucune") console.log("Réponse attendue: ", alteration_count);
+            else console.log("Réponse attendue: ", alteration_count, alteration_type);
             if(type_alt == alteration_type && nb_alt == alteration_count) $("#score").html(++current_score);
             break;
         case 2:
             let alteration_wanted = $("#alteration_wanted").val();
             let scale_wanted = $("#scale_wanted").val();
-            console.log(alteration_wanted, scale_wanted);
-            console.log(scale_alteration, scale);
+            if(alteration_wanted == "Aucune") console.log("Réponse entrée: ", scale_wanted);
+            else console.log("Réponse entrée: ", scale_wanted, alteration_wanted);
+            if(scale_alteration == "Aucune") console.log("Réponse attendue: ", scale);
+            else console.log("Réponse attendue: ", scale, scale_alteration);
             if(alteration_wanted == scale_alteration && scale_wanted == scale) $("#score").html(++current_score);
             break;
         case 3:
+            let s = "";
             let checked = []
             for (var i = 0; i < BUTTON_COUNT; i++) {
                 if($("#select_ht_"+i).prop("checked") == true) {
                     checked.push(i)
                 }
             }
-            console.log(checked);
+            s = "";
+            for(var i = 0; i < checked.length; i++) {
+                s += document.getElementById("select_"+checked[i]).innerHTML + ", ";
+            }
+            s = s.substring(0, s.length - 2);
+            console.log("Réponse entrée: ", s);
             if(scale_type == "maj_") {
                 var i = first_note_id;
-                console.log(i, (i+2)%12, (i+4)%12, (i+5)%12, (i+7)%12, (i+9)%12, (i+11)%12);
+                console.log("Réponse attendue: ",
+                            document.getElementById("select_"+i).innerHTML + ", ",
+                            document.getElementById("select_"+(i+2)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+4)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+5)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+7)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+9)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+11)%12).innerHTML);
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
                     && checked.includes((i+4)%12)
@@ -208,7 +225,14 @@ function verify_answer() {
             }
             else {
                 var i = first_note_id;
-                console.log(i, (i+2)%12, (i+3)%12, (i+5)%12, (i+7)%12, (i+8)%12, (i+10)%12);
+                console.log("Réponse attendue: ",
+                            document.getElementById("select_"+i).innerHTML + ", ",
+                            document.getElementById("select_"+(i+2)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+3)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+5)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+7)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+8)%12).innerHTML + ", ",
+                            document.getElementById("select_"+(i+10)%12).innerHTML);
                 if    (checked.includes(i)
                     && checked.includes((i+2)%12)
                     && checked.includes((i+3)%12)
@@ -227,7 +251,7 @@ function verify_answer() {
                 }
             }
 
-            console.log(minor_rel);
+            console.log("Réponse entrée: ", document.getElementById("minor_rel_"+minor_rel).innerHTML);
 
             if(other_scale_alteration == "Aucune") {
                 let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
