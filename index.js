@@ -179,7 +179,7 @@ function generate_question() {
         case 1:
             return "Quelle sont les altérations de la gamme de "+document.getElementById(scale_type+scale_id).innerHTML+" et combien y en a-t-il?";
         case 2:
-            if(alteration_type !== "Aucune") return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" "+alteration_type+"?";
+            if(alteration_type !== "") return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" "+alteration_type+"?";
             else return "Quelle est la tonalité "+scale_type_text+"e qui contient "+alteration_count+" altérations?";
         case 3:
             return "Quelles sont les notes de la gamme de "+document.getElementById(scale_type+scale_id).innerHTML+"?";
