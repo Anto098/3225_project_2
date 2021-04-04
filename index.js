@@ -254,19 +254,22 @@ function verify_answer() {
                 }
             }
 
-            console.log("Réponse entrée: ", document.getElementById("minor_rel_"+minor_rel).innerHTML);
+
+            let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
+            console.log("Réponse entrée: ", note);
 
             if(other_scale_alteration == "Aucune") {
-                let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
+                console.log("Réponse attendue: ", other_scale);
                 if(note.includes(other_scale) && !note.includes("♯") && !note.includes("♭")) $("#score").html(++current_score);
             }
             else {
-                let note = document.getElementById("minor_rel_"+minor_rel).innerHTML;
+                console.log("Réponse attendue: ", other_scale, other_scale_alteration);
                 if(note.includes(other_scale+" "+other_scale_alteration)) $("#score").html(++current_score);
             }
 
             // Reset all buttons
-            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary"); 
+            $(".js_bq4").removeClass("btn-secondary checked").addClass("btn-primary");
+            $("#minor_rel_0").removeClass("btn-primary").addClass("btn-secondary checked");
             break;
     }
 
